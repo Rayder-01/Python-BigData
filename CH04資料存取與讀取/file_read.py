@@ -1,4 +1,3 @@
-from bcrypt import re
 from matplotlib.pyplot import connect
 
 
