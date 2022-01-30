@@ -5,7 +5,7 @@
 # 自動填入資料 應用
 
 from selenium import webdriver
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\Application\chromedriver')
 
 url = 'https://zh-tw.facebook.com/'
 email = '填入'
