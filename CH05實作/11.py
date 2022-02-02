@@ -1,6 +1,8 @@
 from lib2to3.pgen2 import driver
 import time,os
 from urllib.request import urlopen
+from xml.dom.minidom import Document
+from matplotlib.pyplot import title
 from selenium import webdriver
 from bs4 import BeautifulSoup
 # 使用 google chromedriver:
@@ -21,4 +23,9 @@ driver.get(url)
 driver.implicitly_wait(1)
 print("圖片下載中")
 for i in range(1,10):
-    driver.execute_script("window.scrollTo(")
+    driver.execute_script("window.scrollTo(0,\
+      document.body.scrollHeight);")
+    time.sleep(0.3)
+
+soup = BeautifulSoup(driver.page_source,'html.parser')
+title = soup.select('.ablum-title')
