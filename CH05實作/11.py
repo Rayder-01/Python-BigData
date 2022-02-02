@@ -17,3 +17,8 @@ driver.maximize_window()
 url = 'https://www.pexels.com/zh-tw/search/code/'
 
 driver.get(url)
+
+driver.implicitly_wait(1)
+print("圖片下載中")
+for i in range(1,10):
+    driver.execute_script("window.scrollTo(")
