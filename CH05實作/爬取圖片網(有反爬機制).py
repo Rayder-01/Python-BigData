@@ -17,8 +17,9 @@ from bs4 import BeautifulSoup
 options = webdriver.ChromeOptions()
 # 设置中文
 options.add_argument('lang=zh_CN.UTF-8')
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41"
 # 更换头部
-options.add_argument('user-agent="Mozilla/5.0 (iPod; U; CPU iPhone OS 2_1 like Mac OS X; ja-jp) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Mobile/5F137 Safari/525.20"')
+options.add_argument('user-agent=%s' % user_agent)
 
 driver = webdriver.Chrome('C:\Program Files (x86)\Google\Chrome\Application\chromedriver',chrome_options=options)
 driver.maximize_window()
