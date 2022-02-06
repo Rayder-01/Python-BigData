@@ -69,7 +69,7 @@ for img in all_img:
             # if n>= 2: # 最多下載張數
             #     break
         # except:
-        #     print("{}  幹你娘!!無法讀取!".format(filename))
+        #     print("{} 無法讀取!".format(filename))
 
 print("共下載",n,"張圖片")
 driver.quit();

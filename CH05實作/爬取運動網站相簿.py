@@ -47,22 +47,15 @@ for img in all_img:
         full_path = src
         filename = full_path.split('/')[-1] #取的檔名
         print(full_path)
-        # 儲存圖片
-        image = urlopen(full_path)
-        with open(os.path.join(img_dir,filename),'wb') as f:
-            f.write(image.read())
-        n +=1
-        if n>= 2: # 最多下載張數
-            break
-        # try:
-            # image = urlopen(full_path)
-            # with open(os.path(img_dir),'wb') as f:
-            #     f.write(image.read())
-            # n +=1
-            # if n>= 2: # 最多下載張數
-            #     break
-        # except:
-        #     print("{}  幹你娘!!無法讀取!".format(filename))
+        try:
+            image = urlopen(full_path)
+            with open(os.path.join(img_dir,filename),'wb') as f:
+                f.write(image.read())
+            n +=1
+            if n>= 2: # 最多下載張數
+                break
+        except:
+            print("{} 無法讀取!".format(filename))
 
 print("共下載",n,"張圖片")
 driver.quit();
