@@ -2,4 +2,4 @@
 # 檢查 -> network -> headers -> STOCK_DAY?
 #https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=20220101&stockNo=2330&_=1644050703773
 
-def twodgit(n):
+# def twodgit(n):
