@@ -1,5 +1,6 @@
 import twstock
 
+# 用twstock來查詢股市資訊
 stock = twstock.Stock('2317')
 print('近一個月的收盤價')
 print(stock.price)
