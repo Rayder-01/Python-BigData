@@ -1,1 +1,0 @@
-print(jdata) # 終端預覽取得的csv資料
