@@ -31,6 +31,7 @@ for i in range(len(pdstock['日期'])):
     pdstock['日期'][i] = con.convertData(pdstock['日期'][i])
     print(pdstock['日期'][i])
 pdstock['日期'] = pd.to_datetime(pdstock['日期']) # 轉換日期欄位為日期格式
+
 print(pdstock)
 x = pdstock['日期']
 y1 = pdstock['收盤價']
@@ -42,4 +43,3 @@ plt.plot(x, y3, label='最高價')
 plt.legend()
 plt.show()
 # pdstock.plot(kind='line', figsize=(12, 6), x='日期', y=['收盤價','最低價','最高價'])
-

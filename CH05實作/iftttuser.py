@@ -21,8 +21,8 @@ while True:
         if counterLine >= 3: # 發送三次就結束程式
             print('程式結束')
             break
-        for i in range(300):
-            time.sleep(300) # 每 5分鐘讀一次
+        for i in range(1):
+            time.sleep(1) # 每 5分鐘讀一次
     else:
         print('twstock 讀取錯誤,錯誤原因:'+realdata['rtmessage'])
         counterError = counterError + 1

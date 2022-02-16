@@ -10,4 +10,4 @@ def convertData(date):
     realdate = realyear + strl[4:6] + strl[7:9]
     return realdate
 
-print(convertData('106/01/02')) 
+print(convertData('110/01/02')) 
