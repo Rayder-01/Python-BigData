@@ -48,5 +48,13 @@ def showpage(url, kind):
 def twobyte(kindno):
     if kindno<10:
         kindnostr="0"+str(kindno)
+    else:
+        kindnostr = str(kindno)
+    return kindno
 
+import requests
+from bs4 import BeautifulSoup
+kindno = 1 # 計數用
+homeurl = 'https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5'
+mode = "?v=1&o=5"
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
