@@ -1,9 +1,6 @@
-from matplotlib.pyplot import title
-from sympy import content
-
 
 def showbook(url,kind):
-    html = request.get(url).text
+    html = requests.get(url).text
     soup = BeautifulSoup(html,'html.parser')
     try:
         pages = int(soup.select('.nct_page span')[0].text) # 計算頁數
@@ -16,10 +13,10 @@ def showbook(url,kind):
         showpage(url, kind)
 
 def showpage(url, kind):
-    html = request.get(url).text
+    html = requests.get(url).text
     soup = BeautifulSoup(html,'html.parser')
     # 近期新書、在 class = "mod_b type02_l001-1 clearfix"
-    res = soup.find_all('div',{'class':"mod_b type02_l001-1 clearfix"})[0]
+    res = soup.find_all('div',{'class':"mod type02_m012 clearfix"})[0]
     items = res.select('.item') # 所有 item
     n = 0 # 計算分頁書本數目
     for item in items:
@@ -50,11 +47,25 @@ def twobyte(kindno):
         kindnostr="0"+str(kindno)
     else:
         kindnostr = str(kindno)
-    return kindno
+    return kindnostr
 
 import requests
 from bs4 import BeautifulSoup
+
 kindno = 1 # 計數用
 homeurl = 'https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5'
 mode = "?v=1&o=5"
+url = "https://www.books.com.tw/web/books_nbtopm_"
+html = requests.get(homeurl).text
+soup = BeautifulSoup(html, 'html.parser')
+# 中文書新書分類，總類別數量
+res = soup.find('div',{'mod_b type02_l001-1 clearfix'})
+hrefs = res.select("a")
+for href in hrefs:
+    kindurl = url + twobyte(kindno) + mode # 分類網址段落
+    print("\nkindno=",kindno)
+    kind = href.text # 分類
+    showbook(kindurl,kind)
+    kindno += 1
+    # if kindno ==2:break
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
