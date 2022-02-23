@@ -40,7 +40,7 @@ def showpage(url, kind):
         print("內容:"+content)
         n+=1
         print("n=",n)
-#        if n==2:break #開發用
+        # if n==2:break #開發用
 
 def twobyte(kindno):
     if kindno<10:
@@ -52,7 +52,7 @@ def twobyte(kindno):
 import requests
 from bs4 import BeautifulSoup
 
-kindno = 1 # 計數用
+kindno = 17 # 計數用
 homeurl = 'https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5'
 mode = "?v=1&o=5"
 url = "https://www.books.com.tw/web/books_nbtopm_"
@@ -67,5 +67,5 @@ for href in hrefs:
     kind = href.text # 分類
     showbook(kindurl,kind)
     kindno += 1
-    # if kindno ==2:break
+    if kindno ==2:break
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
