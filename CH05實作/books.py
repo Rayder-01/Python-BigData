@@ -52,7 +52,7 @@ def twobyte(kindno):
 import requests
 from bs4 import BeautifulSoup
 
-kindno = 17 # 計數用
+kindno = 0 # 計數用
 homeurl = 'https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5'
 mode = "?v=1&o=5"
 url = "https://www.books.com.tw/web/books_nbtopm_"
@@ -65,7 +65,7 @@ for href in hrefs:
     kindurl = url + twobyte(kindno) + mode # 分類網址段落
     print("\nkindno=",kindno)
     kind = href.text # 分類
-    showbook(kindurl,kind)
+    showbook(homeurl,kind)
     kindno += 1
     if kindno ==2:break
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
