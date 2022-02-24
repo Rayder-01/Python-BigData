@@ -3,7 +3,7 @@ def showbook(url,kind):
     html = requests.get(url).text
     soup = BeautifulSoup(html,'html.parser')
     try:
-        pages = int(soup.select('.nct_page span')[0].text) # 計算頁數
+        pages = int(soup.select('.cnt_page span')[0].text) # 計算頁數
         print("共有",pages,"頁")
         for page in range(1,pages+1):
             pageurl = url + '&page=' + str(page).strip()
@@ -40,7 +40,7 @@ def showpage(url, kind):
         print("內容:"+content)
         n+=1
         print("n=",n)
-        # if n==2:break #開發用
+        if n==10:break #開發用
 
 def twobyte(kindno):
     if kindno<10:
@@ -52,7 +52,7 @@ def twobyte(kindno):
 import requests
 from bs4 import BeautifulSoup
 
-kindno = 0 # 計數用
+kindno = 1 # 網址書籍總類分類用
 homeurl = 'https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5'
 mode = "?v=1&o=5"
 url = "https://www.books.com.tw/web/books_nbtopm_"
@@ -65,7 +65,7 @@ for href in hrefs:
     kindurl = url + twobyte(kindno) + mode # 分類網址段落
     print("\nkindno=",kindno)
     kind = href.text # 分類
-    showbook(homeurl,kind)
+    showbook(kindurl,kind)
     kindno += 1
     if kindno ==2:break
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
