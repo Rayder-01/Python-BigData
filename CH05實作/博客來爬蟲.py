@@ -25,7 +25,7 @@ def showpage(url, kind):
         imgurl = scr.split("?i=")[-1].split("&")[0] #ex:https://im2.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/091/65/0010916571.jpg&v=6200f4bc&w=170&h=170
         author = msg.select('a')[1].text
         publish = msg.select('a')[2].text
-        date = msg.find('span').text.split(':')[-1]
+        date = msg.find('span').text.split("：")[-1]
         onsale = item.select('.price .set2')[0].text
         content = item.select('.txt_cont')[0].text.replace(" ","").strip()
         # 將資料加入 list1
@@ -41,7 +41,7 @@ def showpage(url, kind):
         print("內容:"+content)
         n+=1
         print("n=",n)
-        if n==10:break #開發用
+        # if n==10:break #開發用
 
 def twobyte(kindno):
     if kindno<10:
@@ -84,6 +84,6 @@ sheet.append(listtitle)
 for item1 in list1:
     sheet.append(item1)
 
-workbook.save('books_all.xlsx')
+workbook.save('博客來爬蟲-電腦資訊-暢銷排行.xlsx')
 
 # https://www.books.com.tw/web/books_nbtopm_19/?v=1&o=5
