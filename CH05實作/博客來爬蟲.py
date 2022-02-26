@@ -41,7 +41,7 @@ def showpage(url, kind):
         print("內容:"+content)
         n+=1
         print("n=",n)
-        # if n==10:break #開發用
+        # if n==5:break #開發用
 
 def twobyte(kindno):
     if kindno<10:
@@ -73,7 +73,7 @@ hrefs = res.select("a")
 for href in hrefs:
     kindurl = url + twobyte(kindno) + mode # 分類網址段落 # 爬取所有種類用
     print("\nkindno=",kindno)
-    kind = href.text # 分類
+    kind = hrefs[kindno+1].text # 分類
     showbook(kindurl,kind)
     kindno += 1
     if kindno ==20:break # 只選一種書籍種類 使用
