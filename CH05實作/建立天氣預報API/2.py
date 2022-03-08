@@ -31,7 +31,11 @@ def createDF():
                 colspans.append(th.attrs['colspan']) # 找到鍵值
             else:
                 colspans.append("1")
-            monthdate = re.findall('\d+', th.text) # 取得
+            monthdate = re.findall('\d+', th.text) # 取得月日
+            dates.append(year3[k] + '-' + monthdate[0] + 
+              '-' + monthdate[1])
+            days.append(re.findall('[一|二|三|四|五|六|日',
+              th.text)[0]) # 取得星期
 print(createDF)
 
     
