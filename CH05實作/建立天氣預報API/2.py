@@ -29,7 +29,9 @@ def createDF():
         if i > 0: # 從第二個 th開始
             if th.has_attr('colspan'): # BeautifulSoup has_attr('X') 取得'X'標籤
                 colspans.append(th.attrs['colspan']) # 找到鍵值
-            
+            else:
+                colspans.append("1")
+            monthdate = re.findall('\d+', th.text) # 取得
 print(createDF)
 
     
