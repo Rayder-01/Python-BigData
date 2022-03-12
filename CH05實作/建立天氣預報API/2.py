@@ -36,6 +36,15 @@ def createDF():
               '-' + monthdate[1])
             days.append(re.findall('[一|二|三|四|五|六|日',
               th.text)[0]) # 取得星期.
-print(createDF)
+            k+=1
 
-    
+    # 處理第2列
+    ts = [] # 存日期和時間
+    weekdays = [] #存星期幾
+    hours = trs[1].findAll('span')
+    k = 0
+    for i in range(0, len(colspans)):
+        for j in range(0, len(colspans[i])):
+            ts.append(dates[j])
+
+print(createDF)
