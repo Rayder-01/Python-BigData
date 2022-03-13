@@ -44,7 +44,29 @@ def createDF():
     hours = trs[1].findAll('span')
     k = 0
     for i in range(0, len(colspans)):
-        for j in range(0, len(colspans[i])):
-            ts.append(dates[j])
+        for j in range(0, len(colspans[i])):  # 複製取值
+            ts.append(dates[i] + '' +hours[k].text) # 日期 + 時間
+            k += 1
+            weekdays.append('星期' + days[i])
+    df['日期時間'] = ts
+    df['星期'] = weekdays
 
-print(createDF)
+    #處理地3列
+    wxs =[] # 儲存天氣狀況
+    for img in trs[2].findAll('img'):
+        wxs.append(img.attrs['alt']) # 文字資料位於alt屬性
+    df['天氣狀況'] = wxs
+    # 處理第9列以外的第4到10列
+    vals = []
+    for i in range(3, 10):
+        if i is not 8: # 排除地9列
+            tdall = trs[i].findAll('td')
+            for j in range(len(tdall)):
+                td = tdall[j]
+                if j > 0: # 從第2列開始裁示資料
+                    vals.append(td.text)
+            df.iloc[:,i] = vals
+            vals = []
+
+createDF()    
+print()
