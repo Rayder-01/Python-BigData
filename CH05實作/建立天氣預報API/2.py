@@ -59,7 +59,7 @@ def createDF():
     # 處理第9列以外的第4到10列
     vals = []
     for i in range(3, 10):
-        if i is not 8: # 排除地9列
+        if i is not 5: # 排除地5列 降雨機率
             tdall = trs[i].findAll('td')
             for j in range(len(tdall)):
                 td = tdall[j]
@@ -67,6 +67,20 @@ def createDF():
                     vals.append(td.text)
             df.iloc[:,i] = vals
             vals = []
+    # 處理第5列
+    pops = [] # 儲存降雨機率
+    rep = 0 # 重複次數
+    tdall = trs[5].findAll('td')
+    for i in range(len(tdall)):
+        td = tdall[i]
+        if i > 0:
+            if td.has_attr('colspan'): # 如果 colspan存在
+                rep = int(td.attrs['colspan']) # colspan 屬性值就是重複次數
+            else:
+                rep = 1 # 若沒 colspan就不重複取值
+            for j in range(0, rep): # 重複取值
+                pops.append(td.text)
+    df['降雨機率'] = pops
 
 createDF()    
 print()
