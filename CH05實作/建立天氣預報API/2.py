@@ -22,7 +22,7 @@ def createDF():
       datetime.timedelta(days=1)).year)
     year3.append("%d" % (datetime.datetime.now() + 
       datetime.timedelta(days=2)).year)
-    tdall = trs[0].findAll('th')
+    tdall = trs[0].findAll('td')
     k = 0
     for i in range(len(tdall)):
         th = tdall[i]
@@ -31,7 +31,7 @@ def createDF():
                 colspans.append(th.attrs['colspan']) # 找到鍵值
             else:
                 colspans.append("1")
-            monthdate = re.findall('\d+', th.text) # 取得月日
+            monthdate = re.findall('\d+', td.text) # 取得月日
             dates.append(year3[k] + '-' + monthdate[0] + 
               '-' + monthdate[1])
             days.append(re.findall('[一|二|三|四|五|六|日',
@@ -59,8 +59,10 @@ def createDF():
     # 處理第9列以外的第4到10列
     vals = []
     for i in range(3, 10):
-        if i is not 5: # 排除地5列 降雨機率
+        if i != 5 | 8: # 排除地5列 降雨機率
+            print('成功')
             tdall = trs[i].findAll('td')
+            print('成功')
             for j in range(len(tdall)):
                 td = tdall[j]
                 if j > 0: # 從第2列開始裁示資料
@@ -70,7 +72,7 @@ def createDF():
     # 處理第5列
     pops = [] # 儲存降雨機率
     rep = 0 # 重複次數
-    tdall = trs[5].findAll('td')
+    tdall = trs[4].findAll('td')
     for i in range(len(tdall)):
         td = tdall[i]
         if i > 0:
@@ -82,5 +84,18 @@ def createDF():
                 pops.append(td.text)
     df['降雨機率'] = pops
 
+def writeMySql():
+    global df
+    try:
+        conn = pymysql.connect('localhost',port=3306,user='root',
+          passwd='1234',charset='utf8', db='weather') # 連結資料庫
+        cursor = conn.cursor()
+    except:
+        print('資料庫連結錯誤')
+        return
+
+columns = ['日期時間','星期','天氣狀況','溫度','體感溫度','降雨機率',
+           '相對濕度','蒲福風級','風向','舒適度']   
+df = pandas.DataFrame(columns=columns) # 建立DataFrame
 createDF()    
 print()
