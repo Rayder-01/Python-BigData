@@ -15,23 +15,29 @@ def createDF():
     res = requests.get(url)
     res.encodeing = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')
-    trs = soup.find_all('tr') # 取得所有 tr 標籤
-
+    trs1 = soup.find("div",{"id":"PC_week"})
+    trs = trs1.('thead') # 取得所有 tr 標籤
+    # trs = trs2.findAll('tr')
+    print(trs1)
+    # print(trs[0])
     year3.append("%d" % datetime.datetime.now().year)
     year3.append("%d" % (datetime.datetime.now() + 
       datetime.timedelta(days=1)).year)
     year3.append("%d" % (datetime.datetime.now() + 
       datetime.timedelta(days=2)).year)
-    tdall = trs[0].findAll('td')
+    tdall = trs[0].findAll('th')
+    # print(tdall[0])
+    trall = trs[0].findAll('th')
+
     k = 0
-    for i in range(len(tdall)):
-        th = tdall[i]
+    for i in range(len(trall)):
+        th = tdall[5]
         if i > 0: # 從第二個 th開始
             if th.has_attr('colspan'): # BeautifulSoup has_attr('X') 取得'X'標籤
                 colspans.append(th.attrs['colspan']) # 找到鍵值
             else:
                 colspans.append("1")
-            monthdate = re.findall('\d+', td.text) # 取得月日
+            monthdate = re.findall('\d+', th.text) # 取得月日
             dates.append(year3[k] + '-' + monthdate[0] + 
               '-' + monthdate[1])
             days.append(re.findall('[一|二|三|四|五|六|日',
@@ -60,7 +66,7 @@ def createDF():
     vals = []
     for i in range(3, 10):
         if i != 5 | 8: # 排除地5列 降雨機率
-            print('成功')
+            # print('成功'+'trs:'+len(trs[i]))
             tdall = trs[i].findAll('td')
             print('成功')
             for j in range(len(tdall)):
