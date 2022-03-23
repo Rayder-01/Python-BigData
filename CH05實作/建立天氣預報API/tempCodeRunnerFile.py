@@ -1,1 +1,2 @@
-    # trs = trs1.findAll('thead')
+
+                    vals.append(td.text)
