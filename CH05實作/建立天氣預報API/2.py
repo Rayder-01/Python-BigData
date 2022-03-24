@@ -81,9 +81,9 @@ def createDF():
             # print(tdall)
             for j in range(len(tdall)):
                 # print(i,":",j,":",len(tdall))
-                td = tdall[j]
-
-                vals.append(td.text)
+                if j != 8:
+                    td = tdall[j]
+                    vals.append(td.text)
                 # print(vals)
             df.iloc[:,i] = vals
             print(df.iloc[:,i])
